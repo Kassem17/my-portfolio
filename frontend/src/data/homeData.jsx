@@ -3,7 +3,7 @@ import cv from "../assets/cv.pdf";
 
 const homeData = {
   title: "Hi, I’m Kassem Haidar 👋",
-  typingTexts: ["Tailwind Warrior", "MERN developer"],
+  typingTexts: ["Mobile developing beginner", "MERN developer"],
   description:
     "I build modern, responsive web apps with clean UI and smooth UX  blending design and code to create experiences that feel intuitive, fast, and delightful to use.",
 
@@ -37,16 +37,16 @@ const homeData = {
       icon: "bx bxl-linkedin-square",
       href: "https://www.linkedin.com/in/kassem-haidar-068262350/",
     },
-    {
-      platform: "Instagram",
-      icon: "bx bxl-instagram",
-      href: "#",
-    },
-    {
-      platform: "Twitter",
-      icon: "bx bxl-twitter",
-      href: "#",
-    },
+    // {
+    //   platform: "Instagram",
+    //   icon: "bx bxl-instagram",
+    //   href: "#",
+    // },
+    // {
+    //   platform: "Twitter",
+    //   icon: "bx bxl-twitter",
+    //   href: "#",
+    // },
   ],
   stats: [
     {

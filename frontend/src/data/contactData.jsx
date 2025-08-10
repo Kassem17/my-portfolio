@@ -44,11 +44,11 @@ const contactData = {
       icon: "bx bx-envelope",
       description: "Communication Method",
     },
-    {
-      label: "Twitter",
-      href: "https://x.com/kassemh31200911?t=TQIOiyPxaktGplFPBkKQSA&s=09",
-      icon: "bx bx-x",
-    },
+    // {
+    //   label: "Twitter",
+    //   href: "https://x.com/kassemh31200911?t=TQIOiyPxaktGplFPBkKQSA&s=09",
+    //   icon: "bx bx-x",
+    // },
   ],
 
   // supportPlatforms: [

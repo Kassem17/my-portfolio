@@ -74,20 +74,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="bg-white fixed top-0 left-0 w-full z-50 p-1.5 overflow-hidden shadow-lg dark:bg-gray-800 transition-all duration-300"
-        data-aos-duration="1000"
-        data-aos="fade-down"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 shadow-lg rounded-full px-4 transition-all duration-300"
+        style={{ width: "90%", maxWidth: "1300px" }}
       >
         <div className="container">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between py-4">
-              <a href="#" className="flex items-center gap-2">
-                <i className="bx bx-code-alt text-2xl text-gray-800 dark:text-white"></i>
-                <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
-                  My Portofolio
-                </h1>
-              </a>
-
               <button
                 className="md:hidden text-gray-700 dark:text-white focus:outline-none"
                 onClick={toggleMenu}
@@ -99,13 +91,13 @@ const Navbar = () => {
               </button>
 
               {/* Desktop Menu */}
-              <ul className="hidden md:flex items-center gap-6">
+              <ul className="hidden md:flex  items-center gap-20">
                 {navbarData.map((item) => (
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
                       onClick={() => handleClick(item.id)}
-                      className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 ${
+                      className={`flex items-center justify-between gap-1 px-3 py-2 rounded-lg transition-all duration-200 ${
                         activeId === item.id
                           ? "bg-gray-800 shadow-2xl dark:bg-white dark:text-gray-800 text-white"
                           : "text-gray-800 dark:text-white hover:text-blue-600"
