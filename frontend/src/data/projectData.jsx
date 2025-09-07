@@ -1,4 +1,3 @@
-
 const projectData = {
   title: "Projects",
   subtitle:
@@ -75,17 +74,17 @@ const projectData = {
       demo: "#home",
       github: "#home",
     },
-    {
-      icon: "bx bx-notepad",
-      title: "Project Management app",
-      type: "Fullstack",
-      features: ["Add/edit/delete note", "Laravel Breeze auth"],
-      tech: ["React", "Laravel", "Sqlite"],
-      year: 2022,
-      status: "Completed",
-      demo: "#home",
-      github: "#home",
-    },
+    // {
+    //   icon: "bx bx-notepad",
+    //   title: "Project Management app",
+    //   type: "Fullstack",
+    //   features: ["Add/edit/delete note", "Laravel Breeze auth"],
+    //   tech: ["React", "Laravel", "Sqlite"],
+    //   year: 2022,
+    //   status: "Completed",
+    //   demo: "#home",
+    //   github: "#home",
+    // },
     {
       icon: "bx bx-x",
       title: "X Clone",
