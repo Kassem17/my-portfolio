@@ -6,7 +6,8 @@ const homeData = {
   typingTexts: ["Mobile developing beginner", "MERN developer"],
   description:
     "I build modern, responsive web apps with clean UI and smooth UX  blending design and code to create experiences that feel intuitive, fast, and delightful to use.",
-
+  education:
+    "I completed my Bachelor's degree in Computer Engineering and am currently pursuing a Master's in Computer and Communication Engineering.",
   img: profile,
   buttons: [
     // {

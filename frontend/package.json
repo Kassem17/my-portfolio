@@ -17,6 +17,8 @@
     "boxicons": "^2.1.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.9.5",
+    "react-snowfall": "^2.4.0",
     "react-typed": "^2.0.12",
     "sweetalert2": "^11.22.1",
     "tailwindcss": "^4.1.10"

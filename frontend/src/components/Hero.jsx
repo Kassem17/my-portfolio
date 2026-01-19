@@ -88,6 +88,10 @@ const Home = () => {
               {homeData.description}
             </p>
 
+            <p className="hidden md:flex text-sm text-gray-400 overflow-hidden mr-50">
+              {homeData.education}
+            </p>
+
             <div
               className="flex items-center space-x-4"
               data-aos-delay="600"

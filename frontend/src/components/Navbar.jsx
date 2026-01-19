@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import navbarData from "../data/navbarData.jsx";
+import { useTheme } from "../context/ThemeContext.jsx";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const { theme, setTheme } = useTheme();
+  const isDarkMode = theme === "dark";
 
   const currentYear = () => new Date().getFullYear();
 
@@ -17,7 +21,7 @@ const Navbar = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     navbarData.forEach((item) => {
@@ -40,27 +44,23 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem("theme");
 
-    if (
-      savedTheme === "dark" ||
-      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
+  //   if (
+  //     savedTheme === "dark" ||
+  //     (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  //   ) {
+  //     setIsDarkMode(true);
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     setIsDarkMode(false);
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  // }, []);
 
   const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    document.documentElement.classList.toggle("dark");
-
-    localStorage.setItem("theme", newMode ? "dark" : "light");
+    setTheme(isDarkMode ? "light" : "dark");
   };
 
   const toggleMenu = () => {
