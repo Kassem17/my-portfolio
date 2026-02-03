@@ -1,5 +1,5 @@
 import profile from "../assets/profile.png";
-import cv from "../assets/cv.pdf";
+import cv from "../assets/kassemhaidar_cv.pdf";
 
 const aboutData = {
   title: "About Me",
@@ -14,7 +14,11 @@ const aboutData = {
       icon: "bx bx-calendar",
     },
     { label: "Place of Birth", value: "Beirut, Lebanon", icon: "bx bx-map" },
-    { label: "Email", value: "kassemhaidar290@gmail.com", icon: "bx bx-envelope" },
+    {
+      label: "Email",
+      value: "kassemhaidar290@gmail.com",
+      icon: "bx bx-envelope",
+    },
     { label: "Phone", value: "+961 71 343 792", icon: "bx bx-phone" },
     {
       label: "Education",
