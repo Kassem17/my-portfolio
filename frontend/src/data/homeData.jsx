@@ -1,5 +1,5 @@
 import profile from "../assets/profile.png";
-import cv from "../assets/cv.pdf";
+import cv from "../assets/kassemhaidar_cv.pdf";
 
 const homeData = {
   title: "Hi, I’m Kassem Haidar 👋",

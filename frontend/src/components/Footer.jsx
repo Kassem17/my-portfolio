@@ -1,8 +1,14 @@
 import footerData from "../data/footerData.jsx";
 import Tippy from "@tippyjs/react";
 import Swal from "sweetalert2";
+import PrivacyPolicyModal from "./PrivacyPolicyModal.jsx";
+import { useState } from "react";
 
 const Footer = () => {
+  const [active, setActive] = useState("");
+
+  console.log("active link", active);
+
   return (
     <footer className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white py-12">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
@@ -118,18 +124,22 @@ const Footer = () => {
         {/* Legal Links */}
         <div className="flex gap-4 flex-wrap">
           {footerData.legalLinks.map((link, index) => (
-            <a
+            <button
               key={index}
-              href={link.href}
+              onClick={() => setActive(link.name)}
               className="hover:text-blue-600 dark:hover:text-blue-400 transition"
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
 
         {/* Copyright */}
         <div className="text-center md:text-right">{footerData.copyright}</div>
+
+        {active === "privacy&policy" && (
+          <PrivacyPolicyModal onClose={() => setActive("")} />
+        )}
       </div>
     </footer>
   );

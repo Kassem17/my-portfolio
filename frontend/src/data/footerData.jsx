@@ -20,9 +20,9 @@ const footerData = {
   ],
 
   legalLinks: [
-    { label: "Privacy Policy", href: "#privacy" },
-    { label: "Terms of Use", href: "#terms" },
-    { label: "Sitemap", href: "#sitemap" },
+    { label: "Privacy Policy", href: "#privacy", name: "privacy&policy" },
+    { label: "Terms of Use", href: "#terms", name: "terms" },
+    { label: "Sitemap", href: "#sitemap", name: "sitemap" },
   ],
 
   socials: [

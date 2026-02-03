@@ -40,6 +40,7 @@ const Testimonials = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // edit this
   // Fetch testimonials dari Supabase saat komponen mount
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -99,6 +100,7 @@ const Testimonials = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // edit this
   // Handle form submission
   const handleSubmit = async () => {
     if (!validateForm()) return;
@@ -118,7 +120,7 @@ const Testimonials = () => {
           position: formData.position,
           rating: 5,
           avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(
-            formData.name
+            formData.name,
           )}&background=1f2937&color=fff&size=100`,
         }),
       });
@@ -260,7 +262,7 @@ const Testimonials = () => {
                         className="w-10 h-10 rounded-full shadow-lg object-cover ring-2 ring-gray-200 dark:ring-gray-600"
                         onError={(e) => {
                           e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                            testimonial.name
+                            testimonial.name,
                           )}&background=1f2937&color=fff&size=48`;
                         }}
                       />

@@ -125,7 +125,18 @@ const Home = () => {
               {homeData.buttons.map((btn, index) => (
                 <Tippy content={btn.label} key={index} placement="top">
                   {btn.href && btn.href !== "#" ? (
-                    <a
+                    <button
+                      onClick={() => {
+                        Swal.version({
+                          title: "Resume Download",
+                          text: "Download my resume to know about me",
+                          icon: "info",
+                          confirmButtonText: "Download",
+                          showCloseButton: true,
+                          confirmButtonColor: "green",
+                          cancelButtonColor: "red",
+                        });
+                      }}
                       href={btn.href}
                       download
                       className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
@@ -142,7 +153,7 @@ const Home = () => {
                         } mr-2`}
                       />
                       {btn.label}
-                    </a>
+                    </button>
                   ) : (
                     <button
                       onClick={() =>
