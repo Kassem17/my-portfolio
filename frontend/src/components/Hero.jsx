@@ -127,25 +127,31 @@ const Home = () => {
                   {btn.href && btn.href !== "#" ? (
                     <button
                       onClick={() => {
-                        Swal.version({
+                        Swal.fire({
                           title: "Resume Download",
                           text: "Download my resume to know about me",
                           icon: "info",
                           confirmButtonText: "Download",
+                          showCancelButton: true,
                           showCloseButton: true,
                           confirmButtonColor: "green",
                           cancelButtonColor: "red",
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            const link = document.createElement("a");
+                            link.href = btn.href;
+                            link.download = "Kassem_Haidar_Resume.pdf"; // optional
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }
                         });
                       }}
-                      href={btn.href}
-                      download
                       className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
                         btn.type === "primary"
                           ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-100"
                           : "border-2 border-gray-800 dark:border-white text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800"
                       }`}
-                      target={btn.href.startsWith("http") ? "_blank" : "_self"}
-                      rel="noopener noreferrer"
                     >
                       <i
                         className={`bx ${
