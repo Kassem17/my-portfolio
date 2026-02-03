@@ -35,9 +35,9 @@ const Skills = () => {
   };
 
   // Debugging: Log skill icons to console
-  currentSkills.forEach(skill => {
-    console.log(`Skill: ${skill.name}, Icon: ${skill.icon}`);
-  });
+  // currentSkills.forEach(skill => {
+  //   console.log(`Skill: ${skill.name}, Icon: ${skill.icon}`);
+  // });
 
   return (
     <section id="skills" className="min-h-screen bg-white dark:bg-gray-800 pt-20 overflow-hidden" data-aos-duration="1000" data-aos="fade-down">

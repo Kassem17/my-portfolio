@@ -127,30 +127,41 @@ const About = () => {
             {/* resume btn */}
             <Tippy content={aboutData.resume.label} placement="top">
               {aboutData.resume.href && aboutData.resume.href !== "#" ? (
-                <a
-                  href={aboutData.resume.href}
-                  download
+                <button
+                  onClick={() => {
+                    Swal.fire({
+                      title: "Resume Download",
+                      text: "Download my resume to know about me",
+                      icon: "info",
+                      confirmButtonText: "Download",
+                      showCancelButton: true,
+                      showCloseButton: true,
+                      confirmButtonColor: "green",
+                      cancelButtonColor: "red",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        const link = document.createElement("a");
+                        link.href = aboutData.resume.href;
+                        link.download = "Kassem_Haidar_Resume.pdf"; // optional
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      }
+                    });
+                  }}
                   className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
                     aboutData.resume.type === "primary"
                       ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-100"
                       : "border-2 border-gray-800 dark:border-white text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800"
                   }`}
-                  target={
-                    aboutData.resume.href.startsWith("http")
-                      ? "_blank"
-                      : "_self"
-                  }
-                  rel="noopener noreferrer"
                 >
                   <i
                     className={`bx ${
-                      aboutData.resume.type === "primary"
-                        ? "bx-download"
-                        : "bx-envelope"
+                      aboutData.resume.type === "primary" ? "bx-download" : "bx-envelope"
                     } mr-2`}
                   />
                   {aboutData.resume.label}
-                </a>
+                </button>
               ) : (
                 <button
                   onClick={() =>

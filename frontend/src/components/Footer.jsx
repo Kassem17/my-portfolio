@@ -7,7 +7,7 @@ import { useState } from "react";
 const Footer = () => {
   const [active, setActive] = useState("");
 
-  console.log("active link", active);
+  // console.log("active link", active);
 
   return (
     <footer className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white py-12">

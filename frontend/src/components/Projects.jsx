@@ -70,9 +70,9 @@ const Projects = () => {
   };
 
   // Debugging: Log project icons to console
-  currentProjects.forEach((project) => {
-    console.log(`Project: ${project.title}, Icon: ${project.icon}`);
-  });
+  // currentProjects.forEach((project) => {
+  //   console.log(`Project: ${project.title}, Icon: ${project.icon}`);
+  // });
 
   return (
     <section

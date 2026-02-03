@@ -80,9 +80,9 @@ const Experience = () => {
   };
 
   // Debugging: Log experience icons to console
-  currentExperiences.forEach(experience => {
-    console.log(`Experience: ${experience.title}, Icon: ${experience.icon}`);
-  });
+  // currentExperiences.forEach(experience => {
+  //   console.log(`Experience: ${experience.title}, Icon: ${experience.icon}`);
+  // });
 
   return (
     <section id="experience" className="min-h-screen bg-white dark:bg-gray-800 pt-20 overflow-hidden" data-aos-duration="1000" data-aos="fade-down">
