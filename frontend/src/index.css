@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   DESIGN SYSTEM - Modern Bento + Glassmorphism
+   ============================================ */
+
+:root {
+  /* Base colors - Warm Neutral */
+  --color-bg: #f5f0eb;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-glass: rgba(255, 255, 255, 0.7);
+  --color-surface-glass-hover: rgba(255, 255, 255, 0.85);
+
+  /* Text colors */
+  --color-text: #1a1612;
+  --color-text-secondary: #4a4540;
+  --color-text-muted: #8a8580;
+
+  /* Accent - Terracotta */
+  --color-accent: #c96442;
+  --color-accent-hover: #b55638;
+  --color-accent-muted: #fce8e0;
+  --color-accent-light: #fdf4ef;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #c96442 0%, #e8836a 100%);
+  --gradient-hero: linear-gradient(135deg, #fdf4ef 0%, #f5f0eb 50%, #e8e2db 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+
+  /* Borders */
+  --color-border: rgba(201, 100, 66, 0.15);
+  --color-border-strong: rgba(201, 100, 66, 0.25);
+
+  /* Typography */
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", system-ui, -apple-system, serif;
+
+  /* Border Radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 3rem;
+  --radius-full: 9999px;
+
+  /* Shadows - Soft & Modern */
+  --shadow-sm: 0 2px 8px rgba(26, 22, 18, 0.06);
+  --shadow-md: 0 4px 16px rgba(26, 22, 18, 0.08);
+  --shadow-lg: 0 8px 32px rgba(26, 22, 18, 0.12);
+  --shadow-xl: 0 16px 48px rgba(26, 22, 18, 0.16);
+  --shadow-glow: 0 0 40px rgba(201, 100, 66, 0.2);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dark Mode - Deep Navy with Sage */
+.dark {
+  --color-bg: #0f1419;
+  --color-bg-elevated: #1a2332;
+  --color-surface: #141c27;
+  --color-surface-glass: rgba(20, 28, 39, 0.7);
+  --color-surface-glass-hover: rgba(20, 28, 39, 0.85);
+
+  --color-text: #f5f5f5;
+  --color-text-secondary: #c4c9ce;
+  --color-text-muted: #7a828e;
+
+  /* Sage Accent */
+  --color-accent: #7ec8a3;
+  --color-accent-hover: #9dd6b5;
+  --color-accent-muted: #1e3a2e;
+  --color-accent-light: #243438;
+
+  --gradient-primary: linear-gradient(135deg, #7ec8a3 0%, #5ab88a 100%);
+  --gradient-hero: linear-gradient(135deg, #141c27 0%, #0f1419 50%, #0a0f14 100%);
+  --gradient-card: linear-gradient(145deg, rgba(26, 35, 50, 0.9) 0%, rgba(20, 28, 39, 0.7) 100%);
+
+  --color-border: rgba(126, 200, 163, 0.15);
+  --color-border-strong: rgba(126, 200, 163, 0.3);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 40px rgba(126, 200, 163, 0.25);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+
+.glass {
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-hover:hover {
+  background: var(--color-surface-glass-hover);
+  border-color: var(--color-border-strong);
+}
+
+.glass-card {
+  background: var(--gradient-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   BENTO GRID UTILITIES
+   ============================================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.bento-card {
+  background: var(--gradient-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.bento-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+/* Bento sizes */
+.bento-sm {
+  grid-column: span 12;
+}
+
+.bento-md {
+  grid-column: span 6;
+}
+
+.bento-lg {
+  grid-column: span 8;
+}
+
+.bento-xl {
+  grid-column: span 12;
+}
+
+@media (min-width: 768px) {
+  .bento-sm {
+    grid-column: span 4;
+  }
+
+  .bento-md {
+    grid-column: span 6;
+  }
+
+  .bento-lg {
+    grid-column: span 8;
+  }
+
+  .bento-xl {
+    grid-column: span 12;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-sm {
+    grid-column: span 3;
+  }
+
+  .bento-md {
+    grid-column: span 4;
+  }
+
+  .bento-lg {
+    grid-column: span 6;
+  }
+
+  .bento-xl {
+    grid-column: span 12;
+  }
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface-glass-hover);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.heading-xl {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: var(--shadow-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 60px rgba(201, 100, 66, 0.35);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
