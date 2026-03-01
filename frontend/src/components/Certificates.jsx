@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Fall from "../assets/Fall.png";
-import Spring from "../assets/Spring.png";
+import Spring from "../assets/spring.png";
 import Javascript from "../assets/javascript.png";
 import Python from "../assets/python.png";
 import { Card, CardContent } from "./ui/Card.jsx";
