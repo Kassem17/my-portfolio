@@ -47,7 +47,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl rounded-2xl"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-3xl rounded-2xl"
         style={{
           background: isDarkMode
             ? "rgba(20, 28, 39, 0.8)"
@@ -61,13 +61,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 md:h-14">
             {/* Logo */}
-            <a
+            {/* <a
               href="#home"
               className="flex items-center  font-bold text-xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               <img src="/logo.png" alt="Logo" className="size-35" />
-            </a>
+            </a> */}
 
             {/* Desktop Navigation */}
             <ul className="hidden md:flex items-center gap-1 mr-20">

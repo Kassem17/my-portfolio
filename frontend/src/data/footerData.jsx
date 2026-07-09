@@ -41,11 +41,11 @@ const footerData = {
       icon: "bx bx-envelope",
       href: "kassemhaidar290@gmail.com",
     },
-    {
-      label: "Twitter",
-      icon: "bx bxl-twitter",
-      href: "#",
-    },
+    // {
+    //   label: "Twitter",
+    //   icon: "bx bxl-twitter",
+    //   href: "#",
+    // },
   ],
 
   formSubscription: {

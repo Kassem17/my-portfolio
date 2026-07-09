@@ -4,6 +4,7 @@ import Tippy from "@tippyjs/react";
 import Swal from "sweetalert2";
 import { useTheme } from "../context/ThemeContext.jsx";
 import Certificates from "./Certificates.jsx";
+import Button from "./ui/Button.jsx";
 
 export default function Home() {
   const [currentText, setCurrentText] = useState("");
@@ -99,7 +100,7 @@ export default function Home() {
 
             {/* Description Card */}
             <div
-              className="bento-card flex-1"
+              className="bento-card flex-1 max-h-fit"
               style={{ borderRadius: "var(--radius-xl)" }}
             >
               <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-4">
@@ -133,11 +134,7 @@ export default function Home() {
                     </Tippy>
                   ))}
                 </div>
-                <img
-                  src="/logo.png"
-                  alt=""
-                  className="w-50 opacity-100"
-                />
+                {/* <img src="/logo.png" alt="" className="w-50 opacity-100" /> */}
               </div>
 
               {/* CTA Buttons */}
