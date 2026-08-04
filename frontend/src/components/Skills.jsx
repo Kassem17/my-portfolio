@@ -2,13 +2,55 @@ import { useState } from "react";
 import skillsData from "../data/skillData.jsx";
 import Tippy from "@tippyjs/react";
 import { useTheme } from "../context/ThemeContext.jsx";
+import OrbitingSkills from "./3d/OrbitingSkills.jsx";
+
+const levelPercent = {
+  Advanced: 90,
+  Intermediate: 70,
+  Basic: 45,
+  Beginner: 30,
+  AdvancedBeginner: 30,
+};
 
 const levelDescriptions = {
-  Advanced: "Proficient in complex tasks",
-  Intermediate: "Comfortable with common tasks",
-  Basic: "Learning and experimenting",
-  Beginner: "Getting started",
+  Advanced: "Proficient in complex tasks & production code",
+  Intermediate: "Comfortable building features independently",
+  Basic: "Learning and building personal projects",
+  Beginner: "Getting started & exploring basics",
 };
+
+function ProgressRing({ percent, isDark }) {
+  const radius = 16;
+  const stroke = 3;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (percent / 100) * circumference;
+  const accentColor = isDark ? "#a78bfa" : "#8b5cf6";
+
+  return (
+    <svg height={radius * 2} width={radius * 2} className="progress-ring shrink-0">
+      <circle
+        stroke={isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"}
+        fill="transparent"
+        strokeWidth={stroke}
+        r={normalizedRadius}
+        cx={radius}
+        cy={radius}
+      />
+      <circle
+        stroke={accentColor}
+        fill="transparent"
+        strokeWidth={stroke}
+        strokeDasharray={circumference + " " + circumference}
+        style={{ strokeDashoffset }}
+        r={normalizedRadius}
+        cx={radius}
+        cy={radius}
+        className="progress-ring__circle"
+      />
+    </svg>
+  );
+}
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState("Frontend");
@@ -30,19 +72,20 @@ export default function Skills() {
   };
 
   const tabClass = (isActive) =>
-    `flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+    `flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
       isActive
-        ? "text-white shadow-lg"
+        ? "text-white shadow-lg bg-[var(--gradient-electric)]"
         : "bg-[var(--color-surface-glass)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
     }`;
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <p className="text-sm font-medium text-[var(--color-accent)] mb-2 uppercase tracking-wider">
-            My Expertise
+        <div className="text-center mb-12 animate-slide-up">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-accent)] mb-2 flex items-center justify-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-ping" />
+            Core Stack
           </p>
           <h2
             className="heading-display heading-lg text-[var(--color-text)]"
@@ -50,13 +93,16 @@ export default function Skills() {
           >
             {skillsData.title}
           </h2>
-          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto leading-relaxed font-medium">
             {skillsData.subtitle}
           </p>
         </div>
 
+        {/* 3D Orbiting Skill Canvas */}
+        <OrbitingSkills categories={skillsData.categories} />
+
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-8 animate-slide-up">
           {skillsData.categories.map((cat) => (
             <button
               key={cat.title}
@@ -66,55 +112,54 @@ export default function Skills() {
                 setCurrentPage(1);
               }}
               className={tabClass(activeTab === cat.title)}
-              style={
-                activeTab === cat.title
-                  ? { background: "var(--gradient-primary)" }
-                  : {}
-              }
             >
-              <i className={`bx ${cat.icon}`} />
+              <i className={`bx ${cat.icon} text-lg`} />
               {cat.title}
             </button>
           ))}
         </div>
 
-        {/* Skills Grid - Bento Style */}
+        {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {current.map((skill, index) => (
-            <Tippy
-              key={skill.name}
-              content={levelDescriptions[skill.level] || skill.level}
-              placement="top"
-            >
-              <article
-                className="bento-card group cursor-pointer"
-                style={{ borderRadius: "var(--radius-xl)" }}
+          {current.map((skill, index) => {
+            const pct = levelPercent[skill.level] || 50;
+            return (
+              <Tippy
+                key={skill.name}
+                // content={levelDescriptions[skill.level] || skill.level}
+                placement="none"
               >
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: "var(--color-accent-muted)" }}
-                  >
-                    <i
-                      className={`bx ${skill.icon} text-2xl text-[var(--color-accent)]`}
-                    />
+                <article
+                  className="bento-card rainbow-card group cursor-pointer animate-slide-up"
+                  style={{
+                    borderRadius: "var(--radius-xl)",
+                    animationDelay: `${index * 0.08}s`,
+                  }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-sm"
+                      style={{ background: "var(--color-accent-muted)" }}
+                    >
+                      <i
+                        className={`bx ${skill.icon} text-2xl text-[var(--color-accent)]`}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-bold text-[var(--color-text)] mb-0.5 group-hover:text-[var(--color-accent)] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
+                        {skill.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">
+                        {skill.level}
+                      </p>
+                    </div>
+
+                    <ProgressRing percent={pct} isDark={isDark} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-semibold text-[var(--color-text)] mb-1">
-                      {skill.name}
-                    </h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                      {skill.level}
-                    </p>
-                  </div>
-                  {/* Hover indicator */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i className="bx bx-arrow-right text-lg text-[var(--color-accent)]" />
-                  </div>
-                </div>
-              </article>
-            </Tippy>
-          ))}
+                </article>
+              </Tippy>
+            );
+          })}
         </div>
 
         {/* Pagination */}
@@ -126,23 +171,18 @@ export default function Skills() {
               disabled={currentPage === 1}
               className="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--color-border)] text-[var(--color-text)] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
             >
-              <i className="bx bx-chevron-left" />
+              <i className="bx bx-chevron-left text-xl" />
             </button>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
                 type="button"
                 onClick={() => goToPage(page)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                   currentPage === page
-                    ? "text-white shadow-md"
+                    ? "text-white shadow-md bg-[var(--gradient-electric)]"
                     : "border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-accent)]"
                 }`}
-                style={
-                  currentPage === page
-                    ? { background: "var(--gradient-primary)" }
-                    : {}
-                }
               >
                 {page}
               </button>
@@ -153,7 +193,7 @@ export default function Skills() {
               disabled={currentPage === totalPages}
               className="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--color-border)] text-[var(--color-text)] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
             >
-              <i className="bx bx-chevron-right" />
+              <i className="bx bx-chevron-right text-xl" />
             </button>
           </div>
         )}

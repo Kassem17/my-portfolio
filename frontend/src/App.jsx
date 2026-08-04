@@ -8,6 +8,8 @@ import Testimonials from "./components/Testimonial";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ElectricMesh from "./components/ui/ElectricMesh";
+import VisitorTracker from "./components/VisitorTracker";
 import { useTheme } from "./context/ThemeContext";
 
 function App() {
@@ -15,16 +17,25 @@ function App() {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen relative overflow-x-hidden selection:bg-[var(--color-accent)] selection:text-white"
       style={{
         background:
           theme === "dark"
-            ? "linear-gradient(180deg, #0f1419 0%, #141c27 100%)"
-            : "linear-gradient(180deg, #fdf4ef 0%, #f5f0eb 50%, #e8e2db 100%)",
+            ? "linear-gradient(180deg, #07090e 0%, #0b0f19 50%, #030712 100%)"
+            : "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)",
       }}
     >
+      {/* Automatic Visitor Notification Tracker */}
+      <VisitorTracker />
+
+      {/* Dynamic Electric Mesh Fluid Background Blobs */}
+      <ElectricMesh />
+
+      {/* Texture Noise Overlay */}
+      <div className="noise-overlay" />
+
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Home />
         <About />
         <Projects />

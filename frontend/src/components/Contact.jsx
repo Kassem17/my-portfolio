@@ -3,6 +3,7 @@ import contactData from "../data/contactData.jsx";
 import Tippy from "@tippyjs/react";
 import Swal from "sweetalert2";
 import { useTheme } from "../context/ThemeContext.jsx";
+import WhishDonateButton from "./ui/WhishButton.jsx";
 
 export default function Contact() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ export default function Contact() {
   const isDark = theme === "dark";
 
   const inputClass =
-    "w-full px-4 py-3.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-glass)] backdrop-blur-sm text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-300";
+    "w-full px-4 py-3.5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-glass)] backdrop-blur-md text-[var(--color-text)] placeholder-[var(--color-text-muted)] focus:outline-none input-glow transition-all duration-300 font-medium text-sm";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,12 +62,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium text-[var(--color-accent)] mb-2 uppercase tracking-wider">
-            Get In Touch
+        <div className="text-center mb-16 animate-slide-up">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-accent)] mb-2 flex items-center justify-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-ping" />
+            Let's Collaborate
           </p>
           <h2
             className="heading-display heading-lg text-[var(--color-text)]"
@@ -74,7 +76,7 @@ export default function Contact() {
           >
             {contactData.title}
           </h2>
-          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto leading-relaxed font-medium">
             {contactData.subtitle}
           </p>
         </div>
@@ -90,49 +92,49 @@ export default function Contact() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bento-card flex items-center gap-4 group"
-                style={{ borderRadius: "var(--radius-xl)" }}
+                className="bento-card rainbow-card flex items-center gap-4 group animate-slide-up"
+                style={{
+                  borderRadius: "var(--radius-xl)",
+                  animationDelay: `${index * 0.08}s`,
+                }}
               >
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm"
                   style={{ background: "var(--color-accent-muted)" }}
                 >
                   <i
-                    className={`${item.icon} text-xl text-[var(--color-accent)]`}
+                    className={`${item.icon} text-2xl text-[var(--color-accent)]`}
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="font-semibold text-[var(--color-text)] block">
+                  <span className="font-extrabold text-[var(--color-text)] block group-hover:text-[var(--color-accent)] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
                     {item.label}
                   </span>
-                  <span className="text-sm text-[var(--color-text-muted)]">
+                  <span className="text-xs font-medium text-[var(--color-text-muted)] truncate block mt-0.5">
                     {item.description}
                   </span>
                 </div>
-                <i className="bx bx-chevron-right text-xl text-[var(--color-text-muted)] group-hover:translate-x-1 transition-transform" />
+                <i className="bx bx-chevron-right text-2xl text-[var(--color-text-muted)] group-hover:translate-x-1 group-hover:text-[var(--color-accent)] transition-all" />
               </a>
             ))}
           </div>
 
           {/* Contact Form */}
           <div
-            className="lg:col-span-3 bento-card"
+            className="lg:col-span-3 bento-card rainbow-card animate-slide-up stagger-3"
             style={{
               borderRadius: "var(--radius-xl)",
-              background: isDark
-                ? "rgba(20, 28, 39, 0.8)"
-                : "rgba(255, 255, 255, 0.8)",
             }}
           >
-            <h3 className="text-lg font-semibold text-[var(--color-text)] mb-5 flex items-center gap-2">
-              <i className="bx bx-envelope text-[var(--color-accent)]" />
+            <h3 className="text-lg font-extrabold text-[var(--color-text)] mb-5 flex items-center gap-2" style={{ fontFamily: "var(--font-display)" }}>
+              <i className="bx bx-envelope text-xl text-[var(--color-accent)]" />
               Send a message
             </h3>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-2">
                     Your Name
                   </label>
                   <input
@@ -146,7 +148,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-2">
                     Your Email
                   </label>
                   <input
@@ -159,14 +161,15 @@ export default function Contact() {
                     required
                   />
                 </div>
+              
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-secondary)] mb-2">
                   Your Message
                 </label>
                 <textarea
-                  placeholder="Hello, I'd like to discuss..."
+                  placeholder="Hello, I'd like to discuss a project..."
                   className={`${inputClass} min-h-[140px] resize-y`}
                   rows={5}
                   value={message}
@@ -180,16 +183,16 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full justify-center"
+                  className="btn-primary w-full justify-center py-4 font-bold text-base shadow-xl"
                 >
                   {isSubmitting ? (
                     <>
-                      <i className="bx bx-loader-alt animate-spin" />
+                      <i className="bx bx-loader-alt animate-spin text-xl" />
                       Sending...
                     </>
                   ) : (
                     <>
-                      <i className="bx bx-send text-lg" />
+                      <i className="bx bx-send text-xl" />
                       Send Message
                     </>
                   )}

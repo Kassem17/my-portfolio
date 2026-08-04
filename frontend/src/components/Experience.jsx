@@ -8,7 +8,6 @@ export default function Experience() {
   const [activeTab, setActiveTab] = useState("Work");
   const [currentPage, setCurrentPage] = useState(1);
   const { theme } = useTheme();
-  const isDark = theme === "dark";
   const perPage = 6;
 
   const filtered = experienceData.experiences.filter(
@@ -43,19 +42,20 @@ export default function Experience() {
   };
 
   const tabClass = (isActive) =>
-    `flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+    `flex items-center gap-2 px-6 py-3 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-300 ${
       isActive
-        ? "text-white shadow-lg"
+        ? "text-white shadow-lg bg-[var(--gradient-electric)]"
         : "bg-[var(--color-surface-glass)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
     }`;
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium text-[var(--color-accent)] mb-2 uppercase tracking-wider">
-            My Journey
+        <div className="text-center mb-16 animate-slide-up">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-accent)] mb-2 flex items-center justify-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-ping" />
+            Career History
           </p>
           <h2
             className="heading-display heading-lg text-[var(--color-text)]"
@@ -63,13 +63,13 @@ export default function Experience() {
           >
             {experienceData.title}
           </h2>
-          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+          <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto leading-relaxed font-medium">
             {experienceData.subtitle}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-10 animate-slide-up">
           {experienceData.tabs.map((tab) => (
             <button
               key={tab}
@@ -79,31 +79,29 @@ export default function Experience() {
                 setCurrentPage(1);
               }}
               className={tabClass(activeTab === tab)}
-              style={
-                activeTab === tab
-                  ? { background: "var(--gradient-primary)" }
-                  : {}
-              }
             >
               <i
-                className={`bx ${tab.toLowerCase() === "work" ? "bx-briefcase" : "bx-group"}`}
+                className={`bx ${tab.toLowerCase() === "work" ? "bx-briefcase" : "bx-group"} text-lg`}
               />
               {tab}
             </button>
           ))}
         </div>
 
-        {/* Experience Cards - Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {current.map((exp) => (
+        {/* Experience Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {current.map((exp, index) => (
             <article
               key={exp.title + exp.company}
-              className="bento-card"
-              style={{ borderRadius: "var(--radius-xl)" }}
+              className="bento-card rainbow-card group relative overflow-hidden animate-slide-up"
+              style={{
+                borderRadius: "var(--radius-xl)",
+                animationDelay: `${index * 0.08}s`,
+              }}
             >
               <div className="flex items-start gap-4 mb-4">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm"
                   style={{ background: "var(--color-accent-muted)" }}
                 >
                   <i
@@ -111,10 +109,10 @@ export default function Experience() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--color-text)]">
+                  <h3 className="text-lg font-extrabold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">
+                  <p className="text-xs font-bold text-[var(--color-text-muted)] mt-1 uppercase tracking-wider">
                     {[exp.company, exp.year, exp.location]
                       .filter(Boolean)
                       .join(" · ")}
@@ -124,14 +122,14 @@ export default function Experience() {
 
               {/* Responsibilities */}
               <div className="mb-4">
-                <h4 className="text-sm font-semibold text-[var(--color-text)] mb-2">
-                  Responsibilities
+                <h4 className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                  Key Deliverables
                 </h4>
-                <ul className="text-sm text-[var(--color-text-muted)] space-y-1.5">
+                <ul className="text-sm font-medium text-[var(--color-text-muted)] space-y-1.5">
                   {exp.description.map((d, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <i className="bx bx-check text-[var(--color-accent)] mt-0.5 text-base" />
-                      {d}
+                      <i className="bx bx-check text-[var(--color-accent)] mt-0.5 text-base shrink-0" />
+                      <span>{d}</span>
                     </li>
                   ))}
                 </ul>
@@ -139,14 +137,14 @@ export default function Experience() {
 
               {/* Tech Stack */}
               <div className="mb-5">
-                <h4 className="text-sm font-semibold text-[var(--color-text)] mb-2">
-                  Tech
+                <h4 className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                  Technologies
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1.5 text-xs rounded-lg font-medium bg-[var(--color-surface-glass)] border border-[var(--color-border)] text-[var(--color-text-secondary)]"
+                      className="px-2.5 py-1 text-xs rounded-lg font-bold bg-[var(--color-accent-muted)] border border-[var(--color-border)] text-[var(--color-text-secondary)] shadow-2xs"
                     >
                       {t}
                     </span>
@@ -161,7 +159,7 @@ export default function Experience() {
                     <button
                       type="button"
                       onClick={() => openLink(exp.details, "Details")}
-                      className="flex-1 py-2.5 rounded-xl text-sm font-medium bg-[var(--color-accent)] text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                      className="flex-1 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-[var(--gradient-electric)] text-white hover:opacity-90 transition-all flex items-center justify-center gap-1.5 shadow-sm"
                     >
                       Details <i className="bx bx-link-external text-sm" />
                     </button>
@@ -172,7 +170,7 @@ export default function Experience() {
                     <button
                       type="button"
                       onClick={() => openLink(exp.companyUrl, "Company link")}
-                      className="flex-1 py-2.5 rounded-xl text-sm font-medium bg-[var(--color-surface-glass)] border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors flex items-center justify-center gap-2"
+                      className="flex-1 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-[var(--color-surface-glass)] border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all flex items-center justify-center gap-1.5"
                     >
                       Company <i className="bx bx-building text-sm" />
                     </button>
@@ -192,23 +190,18 @@ export default function Experience() {
               disabled={currentPage === 1}
               className="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--color-border)] text-[var(--color-text)] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
             >
-              <i className="bx bx-chevron-left" />
+              <i className="bx bx-chevron-left text-xl" />
             </button>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
                 type="button"
                 onClick={() => goToPage(page)}
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                   currentPage === page
-                    ? "text-white shadow-md"
+                    ? "text-white shadow-md bg-[var(--gradient-electric)]"
                     : "border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-accent)]"
                 }`}
-                style={
-                  currentPage === page
-                    ? { background: "var(--gradient-primary)" }
-                    : {}
-                }
               >
                 {page}
               </button>
@@ -219,7 +212,7 @@ export default function Experience() {
               disabled={currentPage === totalPages}
               className="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--color-border)] text-[var(--color-text)] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
             >
-              <i className="bx bx-chevron-right" />
+              <i className="bx bx-chevron-right text-xl" />
             </button>
           </div>
         )}
