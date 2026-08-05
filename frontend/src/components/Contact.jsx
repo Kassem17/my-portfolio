@@ -25,6 +25,8 @@ export default function Contact() {
     formData.append("email", email);
     formData.append("message", message);
 
+    
+
     try {
       const res = await fetch("https://getform.io/f/avrygdma", {
         method: "POST",
