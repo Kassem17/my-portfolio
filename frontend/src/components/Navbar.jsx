@@ -115,7 +115,7 @@ export default function Navbar() {
                 className="font-extrabold text-lg"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                span classname="text-gradient">Kassem Haidar</span>
+                <span>Kassem Haidar</span>
               </a>
 
               <div className="flex items-center gap-2">
