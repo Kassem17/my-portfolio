@@ -1,5 +1,5 @@
 import profile from "../assets/profile.png";
-import cv from "../assets/kassemhaidar_cv.pdf";
+import cv from "../assets/KassemHaidar_cv.pdf";
 import profile2 from "../assets/imag3.jpg";
 
 const aboutData = {
