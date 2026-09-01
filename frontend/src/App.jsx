@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ElectricMesh from "./components/ui/ElectricMesh";
-// import VisitorTracker from "./components/VisitorTracker";
+import VisitorTracker from "./components/VisitorTracker";
 // import Dashboard from "./components/Dashboard";
 import { useTheme } from "./context/ThemeContext";
 
@@ -36,7 +36,7 @@ function App() {
             }}
           >
             {/* Automatic Visitor Notification Tracker */}
-            {/* <VisitorTracker /> */}
+            <VisitorTracker />
 
             {/* Dynamic Electric Mesh Fluid Background Blobs */}
             <ElectricMesh />
